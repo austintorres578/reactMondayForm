@@ -74,12 +74,12 @@ function reusableFetch(api,query,variables){
    .then(res => console.log(JSON.stringify(res, null, 2)));
 
 }
-function test(event){
+function submit(event){
   event.preventDefault()
 // reusableFetch('https://api.monday.com/v2','mutation{ create_item (board_id:3977125012, item_name:\"WHAT IS UP MY FRIENDS!\") { id } }')
 
 
-if(document.querySelector(".css-1fdsijx-ValueContainer").children[0].innerHTML==="Select Package"){
+if(document.querySelector('.packages').children[2].children[0].children[0].innerHTML==="Select Package"){
   alert('Please select package')
 }else{
 
@@ -90,12 +90,14 @@ filledVariables = {
   "columnVals" : JSON.stringify({
     "status4" : {"label" : "Awaiting Development"},
     "date4" : {"date" : `${currentDate}`},
-    "text3": `${document.querySelector(".css-1fdsijx-ValueContainer").children[0].innerHTML}`,
+    "text3": `${document.querySelector('.packages').children[2].children[0].children[0].innerHTML}`,
     "text2": `${document.querySelector(".email-container").children[0].value}`,
     "text5":`${document.querySelector(".phone-number-container").children[0].value}`,
     "text0":`${document.querySelector(".website-container").children[0].value}`
   })
 }
+
+
 
 
 
@@ -106,6 +108,8 @@ window.location.reload()
 }
 }
 
+
+
 useEffect(()=>{
   getBoards()
 },[])
@@ -113,7 +117,7 @@ useEffect(()=>{
   return (
     <div className="App">
         <div className='form-container'>
-        <form onSubmit={test}>
+        <form onSubmit={submit}>
           <div className='form-name'>
             <h1>New Client Form</h1>
           </div>
@@ -132,6 +136,7 @@ useEffect(()=>{
           </div>
           <div className='packages-container'>
             <Select 
+            className='packages'
             options={packages}
             placeholder='Select Package'
             required
